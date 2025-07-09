@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AR Hiro - Araignées interactives</title>
+    <title>AR Hiro - Cube rose</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/2.2.1/aframe/build/aframe-ar.min.js"></script>
@@ -11,74 +11,10 @@
   </head>
   <body>
     <a-scene embedded arjs vr-mode-ui="enabled: false">
-      <a-assets>
-        <a-asset-item id="click-sound" src="https://cdn.jsdelivr.net/gh/naptha/talkify@master/sounds/confirm.mp3"></a-asset-item>
-      </a-assets>
-
-      <a-entity cursor="rayOrigin: mouse" raycaster="objects: .spider"></a-entity>
-
       <a-marker preset="hiro">
-        <a-entity id="spider-group">
-          <!-- 5 araignées stylisées -->
-          <a-entity class="spider" position="-0.8 0.1 0">
-            <a-sphere radius="0.03" color="#000000"></a-sphere>
-            <a-sphere radius="0.015" color="#000000" position="0.04 0 0"></a-sphere>
-            <a-cylinder radius="0.002" height="0.06" color="#000000" position="0 0 0.03" rotation="0 0 45"></a-cylinder>
-            <a-cylinder radius="0.002" height="0.06" color="#000000" position="0 0 -0.03" rotation="0 0 -45"></a-cylinder>
-          </a-entity>
-          <a-entity class="spider" position="0.6 0.2 0">
-            <a-sphere radius="0.03" color="#000000"></a-sphere>
-            <a-sphere radius="0.015" color="#000000" position="0.04 0 0"></a-sphere>
-            <a-cylinder radius="0.002" height="0.06" color="#000000" position="0 0 0.03" rotation="0 0 45"></a-cylinder>
-            <a-cylinder radius="0.002" height="0.06" color="#000000" position="0 0 -0.03" rotation="0 0 -45"></a-cylinder>
-          </a-entity>
-          <a-entity class="spider" position="0 0.4 0">
-            <a-sphere radius="0.03" color="#000000"></a-sphere>
-            <a-sphere radius="0.015" color="#000000" position="0.04 0 0"></a-sphere>
-            <a-cylinder radius="0.002" height="0.06" color="#000000" position="0 0 0.03" rotation="0 0 45"></a-cylinder>
-            <a-cylinder radius="0.002" height="0.06" color="#000000" position="0 0 -0.03" rotation="0 0 -45"></a-cylinder>
-          </a-entity>
-          <a-entity class="spider" position="-0.6 0.3 0">
-            <a-sphere radius="0.03" color="#000000"></a-sphere>
-            <a-sphere radius="0.015" color="#000000" position="0.04 0 0"></a-sphere>
-            <a-cylinder radius="0.002" height="0.06" color="#000000" position="0 0 0.03" rotation="0 0 45"></a-cylinder>
-            <a-cylinder radius="0.002" height="0.06" color="#000000" position="0 0 -0.03" rotation="0 0 -45"></a-cylinder>
-          </a-entity>
-          <a-entity class="spider" position="0.7 -0.1 0">
-            <a-sphere radius="0.03" color="#000000"></a-sphere>
-            <a-sphere radius="0.015" color="#000000" position="0.04 0 0"></a-sphere>
-            <a-cylinder radius="0.002" height="0.06" color="#000000" position="0 0 0.03" rotation="0 0 45"></a-cylinder>
-            <a-cylinder radius="0.002" height="0.06" color="#000000" position="0 0 -0.03" rotation="0 0 -45"></a-cylinder>
-          </a-entity>
-        </a-entity>
-
-        <a-sound src="#click-sound" on="click"></a-sound>
+        <a-box position="0 0.5 0" color="hotpink"></a-box>
       </a-marker>
-
       <a-entity camera></a-entity>
-
-      <script>
-        const spiderTargets = [
-          "-0.4 0.05 0",
-          "-0.3 0.15 0",
-          "-0.2 0.05 0",
-          "-0.1 0.15 0",
-          "0 0.05 0"
-        ];
-
-        document.querySelectorAll('.spider').forEach((spider, index) => {
-          spider.addEventListener('click', () => {
-            document.querySelectorAll('.spider').forEach((s, i) => {
-              s.setAttribute('animation__move', {
-                property: 'position',
-                to: spiderTargets[i],
-                dur: 1500,
-                easing: 'easeOutQuad'
-              });
-            });
-          });
-        });
-      </script>
     </a-scene>
   </body>
 </html>
