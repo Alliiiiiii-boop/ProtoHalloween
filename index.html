@@ -5,108 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/2.2.1/aframe/build/aframe-ar.min.js"></script>
-    <style>
-      body { margin: 0; overflow: hidden; }
-    </style>
   </head>
   <body>
-    <a-scene embedded arjs vr-mode-ui="enabled: false">
-      <a-assets>
-        <a-asset-item id="click-sound" src="https://cdn.jsdelivr.net/gh/naptha/talkify@master/sounds/confirm.mp3"></a-asset-item>
-      </a-assets>
-
-      <a-entity cursor="rayOrigin: mouse" raycaster="objects: .spider"></a-entity>
-
+    <a-scene embedded arjs>
       <a-marker preset="hiro">
-        <a-entity id="spider-group">
-          <!-- Araignées initialement dispersées -->
-        </a-entity>
-        <a-sound src="#click-sound" on="click"></a-sound>
+        <a-box position="0 0.5 0" color="hotpink"></a-box>
       </a-marker>
-
       <a-entity camera></a-entity>
-
-      <script>
-        const spiderGroup = document.getElementById("spider-group");
-
-        const createSpider = (id, x, y, z) => {
-          const spider = document.createElement("a-entity");
-          spider.setAttribute("class", "spider");
-          spider.setAttribute("id", id);
-          spider.setAttribute("position", `${x} ${y} ${z}`);
-
-          const body = document.createElement("a-sphere");
-          body.setAttribute("radius", "0.03");
-          body.setAttribute("color", "#000000");
-          spider.appendChild(body);
-
-          const head = document.createElement("a-sphere");
-          head.setAttribute("radius", "0.015");
-          head.setAttribute("color", "#000000");
-          head.setAttribute("position", "0.04 0 0");
-          spider.appendChild(head);
-
-          const leg1 = document.createElement("a-cylinder");
-          leg1.setAttribute("radius", "0.002");
-          leg1.setAttribute("height", "0.06");
-          leg1.setAttribute("color", "#000000");
-          leg1.setAttribute("position", "0 0 0.03");
-          leg1.setAttribute("rotation", "0 0 45");
-          spider.appendChild(leg1);
-
-          const leg2 = document.createElement("a-cylinder");
-          leg2.setAttribute("radius", "0.002");
-          leg2.setAttribute("height", "0.06");
-          leg2.setAttribute("color", "#000000");
-          leg2.setAttribute("position", "0 0 -0.03");
-          leg2.setAttribute("rotation", "0 0 -45");
-          spider.appendChild(leg2);
-
-          spiderGroup.appendChild(spider);
-        };
-
-        // Dispersed starting positions
-        const startPositions = [
-          [-0.3, 0.05, 0],
-          [-0.2, 0.1, 0],
-          [-0.1, 0.15, 0],
-          [0, 0.05, 0],
-          [0.1, 0.1, 0],
-          [0.2, 0.15, 0],
-          [0.3, 0.1, 0],
-          [0.4, 0.05, 0]
-        ];
-
-        // Target positions forming an "O" shape
-        const circlePositions = [
-          [-0.15, 0.05, 0],
-          [-0.1, 0.1, 0],
-          [0, 0.12, 0],
-          [0.1, 0.1, 0],
-          [0.15, 0.05, 0],
-          [0.1, 0, 0],
-          [0, -0.02, 0],
-          [-0.1, 0, 0]
-        ];
-
-        startPositions.forEach((pos, i) => {
-          createSpider("spider" + i, ...pos);
-        });
-
-        // On any click → move all spiders to circle shape
-        document.querySelectorAll(".spider").forEach((spider, index) => {
-          spider.addEventListener("click", () => {
-            document.querySelectorAll(".spider").forEach((s, i) => {
-              s.setAttribute("animation__move", {
-                property: "position",
-                to: circlePositions[i],
-                dur: 1500,
-                easing: "easeOutQuad"
-              });
-            });
-          });
-        });
-      </script>
     </a-scene>
   </body>
 </html>
