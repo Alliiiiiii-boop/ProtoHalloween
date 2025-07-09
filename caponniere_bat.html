@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Caponnière - Chauve-souris</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/2.2.1/aframe/build/aframe-ar.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        font-family: sans-serif;
+        background-color: black;
+        color: white;
+      }
+      #info {
+        position: absolute;
+        top: 1em;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 1.2em;
+        z-index: 5;
+        color: white;
+      }
+      #arContainer {
+        position: absolute;
+        top: 20%;
+        left: 0;
+        width: 100%;
+        height: 75vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="info">🦇 Scannez la chauve-souris</div>
+    <div id="arContainer">
+      <a-scene embedded arjs vr-mode-ui="enabled: false">
+        <a-marker type="pattern" url="marker_bat.patt">
+          <a-text value="W" color="#ff0000" align="center" position="0 0.5 0" scale="6 6 6" side="double"></a-text>
+        </a-marker>
+        <a-entity camera></a-entity>
+      </a-scene>
+    </div>
+  </body>
+</html>
